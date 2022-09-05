@@ -1,1 +1,3 @@
-# Datasets used
+# Datasets Used
+
+For training the framework, the paper uses FFHQ dataset labelled for age transformation task. This dataset provides image of 70,000 people in 10 age groups. Then they split it to training and test set and prune the dataset images that have a low label confidence score. In addition this dataset provides face semantic maps. They use these semantic information to mask out images and so separate face-region and background information for reliable transformation. To evaluate their generalization of the model to unseen images, they use the CelebA-HQ and the CACD datasets in their own qualitative evaluations. Both of these datasets provide face images of celebrities with diversity in age, pose, illumination and expression. All images used in our training and evaluations are at the resolution of 256 × 256 which is a commonly used resolution in existing works.

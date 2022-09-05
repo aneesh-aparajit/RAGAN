@@ -50,6 +50,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Version 1: Re-Aging GAN" href="version1.html" />
@@ -126,7 +128,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="dataset.html">
-   Datasets used
+   Datasets Used
   </a>
  </li>
  <li class="toctree-l1">
@@ -222,7 +224,7 @@ title="Fullscreen mode"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="https://github.com/executablebooks/jupyter-book"
+        <a href="https://github.com/aneesh-aparajit/RAGAN"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -239,7 +241,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fmodules.html&body=Your%20issue%20content%20here."
+        <a href="https://github.com/aneesh-aparajit/RAGAN/issues/new?title=Issue%20on%20page%20%2Fmodules.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -304,12 +306,71 @@ title="Print to PDF"
     </ul>
   </div>
 </div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
 
     </div>
 </div>
 
 <!-- Table of contents -->
 <div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#overview">
+   Overview
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#proposed-framework">
+   Proposed Framework
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#identity-encoder">
+   Identity Encoder
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#age-modulator">
+   Age Modulator
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#decoder">
+   Decoder
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#discriminator">
+   Discriminator
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#optimization">
+   Optimization
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#experimental-setup">
+   Experimental Setup
+  </a>
+ </li>
+</ul>
+
+    </nav>
 </div>
     </div>
     <div class="article row">
@@ -321,6 +382,54 @@ title="Print to PDF"
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#overview">
+   Overview
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#proposed-framework">
+   Proposed Framework
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#identity-encoder">
+   Identity Encoder
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#age-modulator">
+   Age Modulator
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#decoder">
+   Decoder
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#discriminator">
+   Discriminator
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#optimization">
+   Optimization
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#experimental-setup">
+   Experimental Setup
+  </a>
+ </li>
+</ul>
+
+                        </nav>
                     </div>
                 </div>
             </div>
@@ -330,6 +439,34 @@ title="Print to PDF"
                 
   <section class="tex2jax_ignore mathjax_ignore" id="modules-present-in-the-code">
 <h1>Modules present in the Code<a class="headerlink" href="#modules-present-in-the-code" title="Permalink to this headline">#</a></h1>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">#</a></h2>
+<p>Let <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> and <span class="math notranslate nohighlight">\(\mathcal{Y}\)</span> be the set of images and possible ages respectively. Given a face image <span class="math notranslate nohighlight">\(x\in\mathcal{X}\)</span> and a target image <span class="math notranslate nohighlight">\(y'\in\mathcal{Y}\)</span>, our goal is to train a single Generator <span class="math notranslate nohighlight">\(G\)</span> such that it can generate a face image <span class="math notranslate nohighlight">\(x'\)</span> of a particular age <span class="math notranslate nohighlight">\(y'\)</span> corresponding to the identity in <span class="math notranslate nohighlight">\(x\)</span>. In addition, we introduce an age modulator within G to reshape identity features by considering the target age and utilize it as a self-guiding information.</p>
+<p>In comparison to prior works, the main objkect is to robustly transform face age as well as maximum retention of age-unrelated information in <span class="math notranslate nohighlight">\(x'\)</span>, such as background, hairstyle, expression, etc. This means this framework should preserve the age-unrelated information contained in the input image during the age transformation process. Therefore, we consider a simple strategey on encoder and decoder networtks to share some of the valuable information.</p>
+</section>
+<section id="proposed-framework">
+<h2>Proposed Framework<a class="headerlink" href="#proposed-framework" title="Permalink to this headline">#</a></h2>
+<p>The proposed GAN-based frame is divided into the generator consiting of an encoder, a modulator, and a decoder, and the discriminator. Since the discriminator follows exisiting approaches, it was not very broadly elaborated, only the generator part is described in depth. The generator makes use of encoder-decoder architecture for image generator and is made of an identity encoder <span class="math notranslate nohighlight">\(Enc\)</span>, an age modulator <span class="math notranslate nohighlight">\(AM\)</span>, and a decoder <span class="math notranslate nohighlight">\(Dec\)</span>. In a superficial view, the encoder and decoder networks perform the same procedyre as existing works, yet they have a few modifications.</p>
+<p>One of the difference the proposed and the existing works is the indegration of addition sub-network at the bottleneck of the generator. By this networtk, we can obtain features providing information on how a particular person should look like at the age under consideration. Given that such age-ware features are learned based ona given input image, then it can be used for further generatio process.</p>
+</section>
+<section id="identity-encoder">
+<h2>Identity Encoder<a class="headerlink" href="#identity-encoder" title="Permalink to this headline">#</a></h2>
+</section>
+<section id="age-modulator">
+<h2>Age Modulator<a class="headerlink" href="#age-modulator" title="Permalink to this headline">#</a></h2>
+</section>
+<section id="decoder">
+<h2>Decoder<a class="headerlink" href="#decoder" title="Permalink to this headline">#</a></h2>
+</section>
+<section id="discriminator">
+<h2>Discriminator<a class="headerlink" href="#discriminator" title="Permalink to this headline">#</a></h2>
+</section>
+<section id="optimization">
+<h2>Optimization<a class="headerlink" href="#optimization" title="Permalink to this headline">#</a></h2>
+</section>
+<section id="experimental-setup">
+<h2>Experimental Setup<a class="headerlink" href="#experimental-setup" title="Permalink to this headline">#</a></h2>
+</section>
 </section>
 
     <script type="text/x-thebe-config">

@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Datasets used &#8212; CSE3105 J-Component</title>
+    <title>Datasets Used &#8212; CSE3105 J-Component</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -126,7 +126,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Datasets used
+   Datasets Used
   </a>
  </li>
  <li class="toctree-l1">
@@ -222,7 +222,7 @@ title="Fullscreen mode"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="https://github.com/executablebooks/jupyter-book"
+        <a href="https://github.com/aneesh-aparajit/RAGAN"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -239,7 +239,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fdataset.html&body=Your%20issue%20content%20here."
+        <a href="https://github.com/aneesh-aparajit/RAGAN/issues/new?title=Issue%20on%20page%20%2Fdataset.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -316,7 +316,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Datasets used</h1>
+                <h1>Datasets Used</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -329,7 +329,8 @@ title="Print to PDF"
               <div>
                 
   <section class="tex2jax_ignore mathjax_ignore" id="datasets-used">
-<h1>Datasets used<a class="headerlink" href="#datasets-used" title="Permalink to this headline">#</a></h1>
+<h1>Datasets Used<a class="headerlink" href="#datasets-used" title="Permalink to this headline">#</a></h1>
+<p>For training the framework, the paper uses FFHQ dataset labelled for age transformation task. This dataset provides image of 70,000 people in 10 age groups. Then they split it to training and test set and prune the dataset images that have a low label confidence score. In addition this dataset provides face semantic maps. They use these semantic information to mask out images and so separate face-region and background information for reliable transformation. To evaluate their generalization of the model to unseen images, they use the CelebA-HQ and the CACD datasets in their own qualitative evaluations. Both of these datasets provide face images of celebrities with diversity in age, pose, illumination and expression. All images used in our training and evaluations are at the resolution of 256 × 256 which is a commonly used resolution in existing works.</p>
 </section>
 
     <script type="text/x-thebe-config">

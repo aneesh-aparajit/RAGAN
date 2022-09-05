@@ -52,7 +52,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Datasets used" href="dataset.html" />
+    <link rel="next" title="Datasets Used" href="dataset.html" />
     <link rel="prev" title="Abstract" href="abstract.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -126,7 +126,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="dataset.html">
-   Datasets used
+   Datasets Used
   </a>
  </li>
  <li class="toctree-l1">
@@ -222,7 +222,7 @@ title="Fullscreen mode"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="https://github.com/executablebooks/jupyter-book"
+        <a href="https://github.com/aneesh-aparajit/RAGAN"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -239,7 +239,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fliterature.html&body=Your%20issue%20content%20here."
+        <a href="https://github.com/aneesh-aparajit/RAGAN/issues/new?title=Issue%20on%20page%20%2Fliterature.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -330,7 +330,20 @@ title="Print to PDF"
                 
   <section class="tex2jax_ignore mathjax_ignore" id="literature-survey">
 <h1>Literature Survey<a class="headerlink" href="#literature-survey" title="Permalink to this headline">#</a></h1>
-<p>A face age transformation task is dedicated to learning age progression or regression of a given face occording to the target age. Here, the target age implies an explicit conditioning factor that guides the transformation to produce facial images with a certain age. That is, we can set any target age for an input face image, and</p>
+<p>A face age transformation task is dedicated to learning age progression or regression of a given face occording to the target age. Here, the target age implies an explicit conditioning factor that guides the transformation to produce facial images with a certain age. That is, we can set any target age for an input face image, and expect to have an output face depicting the target age characteristics, as shown in the previous slide.</p>
+<p>Ideally, age transformation models should satisfy the following properties.</p>
+<ol class="simple">
+<li><p>A model should take into account the identity of the person while progressing/regressing the face age and systeain it mostly unaltered, <em>i.e.</em>, identity preservation.</p></li>
+<li><p>A model should be able to generate natural looking faces corresponding to the target age across various age group.</p></li>
+</ol>
+<p>In this regard, a number of works on face age transformation have been introduced. These methods, on the basis of powerful generative adversarial networks (GANs). train deep neural networks to perform a robust age transformation of the input face. Aside from this, several mechanisms have been adopted (<em>i.e.</em> networks and constraits) for identity preservation to ensure that face identity is unaltered during the age transformation process. However, even with improved approaches, existing methods tend to generate images with visible artifacts and/or unnatural-looking faces which surely lowers down the image quality and its perception.</p>
+<p>Another important aspect that should be considered is a wide-range age transformation,  specifically, an age regression process for rejuventating input face. Most existing works scarcely emphasise on this. Although a few methods can operate on face age regression and provide good performance, their results still suffer from artifacts near and/or on face regions and contain no background due to the tight face cropping.</p>
+<p>The main contributions of this RAGAN are:</p>
+<ul class="simple">
+<li><p>They introduce a personalized self-guidance scheme that enables transforming the input face across various target age groups while preserving identity.</p></li>
+<li><p>They successfully perform age transformation using only a single generating and discriminative model trained effectively in an unpaired manner.</p></li>
+<li><p>They quantitatively and qualitatively demosntrate the superiority of RAGAN over state-of-the-art methods through extensive experimnents and evalutations.</p></li>
+</ul>
 </section>
 
     <script type="text/x-thebe-config">
@@ -370,7 +383,7 @@ title="Print to PDF"
     <a class='right-next' id="next-link" href="dataset.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Datasets used</p>
+        <p class="prev-next-title">Datasets Used</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
