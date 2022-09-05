@@ -1,0 +1,13 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: intro
+chapters:
+- file: abstract
+- file: literature
+- file: dataset
+- file: algorithms
+- file: modules
+- file: version1
+- file: output
