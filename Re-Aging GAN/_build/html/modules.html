@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Modules present in the Code &#8212; CSE3105 J-Component</title>
+    <title>Architecture &#8212; CSE3105 J-Component</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -138,7 +138,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Modules present in the Code
+   Architecture
   </a>
  </li>
  <li class="toctree-l1">
@@ -357,7 +357,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Modules present in the Code</h1>
+                <h1>Architecture</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -397,8 +397,8 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="modules-present-in-the-code">
-<h1>Modules present in the Code<a class="headerlink" href="#modules-present-in-the-code" title="Permalink to this headline">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="architecture">
+<h1>Architecture<a class="headerlink" href="#architecture" title="Permalink to this headline">#</a></h1>
 <section id="overview">
 <h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">#</a></h2>
 <p>Let <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> and <span class="math notranslate nohighlight">\(\mathcal{Y}\)</span> be the set of images and possible ages respectively. Given a face image <span class="math notranslate nohighlight">\(x\in\mathcal{X}\)</span> and a target image <span class="math notranslate nohighlight">\(y'\in\mathcal{Y}\)</span>, our goal is to train a single Generator <span class="math notranslate nohighlight">\(G\)</span> such that it can generate a face image <span class="math notranslate nohighlight">\(x'\)</span> of a particular age <span class="math notranslate nohighlight">\(y'\)</span> corresponding to the identity in <span class="math notranslate nohighlight">\(x\)</span>. In addition, we introduce an age modulator within G to reshape identity features by considering the target age and utilize it as a self-guiding information.</p>
@@ -415,7 +415,8 @@ title="Print to PDF"
 </section>
 <section id="age-modulator">
 <h2>Age Modulator<a class="headerlink" href="#age-modulator" title="Permalink to this headline">#</a></h2>
-<p>Age modulator <span class="math notranslate nohighlight">\(AM\)</span> is constructed in the form of CNN, which is widely used in learning a low-dimensional vector of an input. It takes identity vectors <span class="math notranslate nohighlight">\(f_{id}\)</span> from the encoder and by, considering given age information <span class="math notranslate nohighlight">\(y'\)</span>, outputs its reshaped version <span class="math notranslate nohighlight">\(f_{aw} = AM(f_{id}, y')\)</span>, where <span class="math notranslate nohighlight">\(f_{aw}\)</span> is an element age-aware vector. To embed target age into AM, we add conditional batch normalization (CBN) layers used as a way to incorporate label information into the network. By doing so, AM learns optimal age-aware features for input identity, which enables satisfying both identity and age properties. Given that the network is integrated into G, it can be trained alongside the generator in an end-to-end manner. We implement AM as a set of downsampling layers with CBN technique producing a compact feature-vector used to modulate decoder layers</p>
+<p>Age modulator <span class="math notranslate nohighlight">\(AM\)</span> is constructed in the form of CNN, which is widely used in learning a low-dimensional vector of an input. It takes identity vectors <span class="math notranslate nohighlight">\(f_{id}\)</span> from the encoder and by, considering given age information <span class="math notranslate nohighlight">\(y'\)</span>, outputs its reshaped version <span class="math notranslate nohighlight">\(f_{aw} = AM(f_{id}, y')\)</span>, where <span class="math notranslate nohighlight">\(f_{aw}\)</span> is an element age-aware vector. To embed target age into AM, we add conditional batch normalization (CBN) layers used as a way to incorporate label information into the network. By doing so, AM learns optimal age-aware features for input identity, which enables satisfying both identity and age properties. Given that the network is integrated into G, it can be trained alongside the generator in an end-to-end manner. We implement AM as a set of downsampling layers with CBN technique producing a compact feature-vector used to modulate decoder layers.</p>
+<a class="bg-primary mb-1 reference internal image-reference" href="_images/model.png"><img alt="model" class="bg-primary mb-1 align-center" src="_images/model.png" style="width: 900px;" /></a>
 </section>
 </section>
 
@@ -467,9 +468,6 @@ title="Print to PDF"
     <div class="footer-content row">
         <footer class="col footer"><p>
   
-    By Aneesh Aparajit G<br/>
-  
-      &copy; Copyright 2022.<br/>
 </p>
         </footer>
     </div>

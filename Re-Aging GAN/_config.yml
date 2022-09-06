@@ -2,7 +2,7 @@
 # Learn more at https://jupyterbook.org/customize/config.html
 
 title: CSE3105 J-Component
-author: Aneesh Aparajit G
+author: 
 logo: logo.png
 
 # Force re-execution of notebooks on each build.
@@ -30,3 +30,7 @@ repository:
 html:
   use_issues_button: true
   use_repository_button: true
+
+sphinx:
+  config:
+    html_show_copyright: false

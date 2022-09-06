@@ -50,9 +50,11 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Modules present in the Code" href="modules.html" />
+    <link rel="next" title="Architecture" href="modules.html" />
     <link rel="prev" title="Datasets Used" href="dataset.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -136,7 +138,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="modules.html">
-   Modules present in the Code
+   Architecture
   </a>
  </li>
  <li class="toctree-l1">
@@ -304,12 +306,41 @@ title="Print to PDF"
     </ul>
   </div>
 </div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
 
     </div>
 </div>
 
 <!-- Table of contents -->
 <div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#face-aging-with-gans">
+   Face Aging with GANs
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#image-to-image-translation">
+   Image-to-Image Translation
+  </a>
+ </li>
+</ul>
+
+    </nav>
 </div>
     </div>
     <div class="article row">
@@ -321,6 +352,24 @@ title="Print to PDF"
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#face-aging-with-gans">
+   Face Aging with GANs
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#image-to-image-translation">
+   Image-to-Image Translation
+  </a>
+ </li>
+</ul>
+
+                        </nav>
                     </div>
                 </div>
             </div>
@@ -330,6 +379,15 @@ title="Print to PDF"
                 
   <section class="tex2jax_ignore mathjax_ignore" id="existing-algorithms">
 <h1>Existing Algorithms<a class="headerlink" href="#existing-algorithms" title="Permalink to this headline">#</a></h1>
+<section id="face-aging-with-gans">
+<h2>Face Aging with GANs<a class="headerlink" href="#face-aging-with-gans" title="Permalink to this headline">#</a></h2>
+<p>Many recent works extensively applied GAN approach in facial aging. A concept of conditional GANs (cGANs) allowing to augment age characteristics in generated images is utilized in. However, models lead to produce blurry images, and damage identity information. In turn, several methods provided improvements by adopting mechanisms such as L2 constraint, pre-trained identity classifier, etc. In addition to the identity preservation network, also introduced wavelet transform to capture texture details for age synthesis. Similarly, wavelet information is used in, but in a multi-scale manner in the discriminator. However, their results still suffer from noticeable artifacts. The work of proposed <span class="math notranslate nohighlight">\(S^2\)</span>GAN which applies age-specific transforms on the encoded personalized aging basis to obtain and decode age-specific representation of the input face. Despite the plausible results, <span class="math notranslate nohighlight">\(S^2\)</span>GAN has less ability to depict age progression.</p>
+<p>To generate high-resolution images, proposed a face age editing model operating in high-resolution (HRFAE). The method relies on a straightforward approach that reweights the encoded features by means of the output of a single fully connected layer. Similarly, proposed incorporating aging maps by using SPADE blocks in the decoding process to obtain high-resolution face images. Although these methods maintain good identity preservation and age information, it is limited to perform mostly age progression than regression. LATS presented a method for synthesizing lifespan age transformations. Their decoder operates in a similar manner as StyleGAN2 and performs modulated convolutions on identity features while injecting the target age latent vector learned from the mapping network. Despite the impressive performance, LATS primarily focuses on face synthesis without using background information, which leads to unexpected artifacts.</p>
+</section>
+<section id="image-to-image-translation">
+<h2>Image-to-Image Translation<a class="headerlink" href="#image-to-image-translation" title="Permalink to this headline">#</a></h2>
+<p>In addition to the facial age-specific approaches, image-to-image translation could be applied for the face age transformation task. There have been several attempts to manipulate the facial age attributes in a multi-domain transfer fashion. To perform face age manipulation (i.e., young to old, and vice-versa), StarGAN and STGAN assume that the age domain is distinct from other face-related domains. However, the appearance of the face due to the specific age is highly correlated with other facial attributes. For instance, when translating between different age groups using multi-domain transfer, styles that are not related to age, such as gender, accessories, and ethnicity can also be transferred. Besides, multi-domain transfer-based approaches struggle for modeling the shape (i.e., head) deformation associated with age transformation. We refer to the work providing extensive analysis on multi-domain transfer approaches.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -369,7 +427,7 @@ title="Print to PDF"
     <a class='right-next' id="next-link" href="modules.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Modules present in the Code</p>
+        <p class="prev-next-title">Architecture</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
@@ -380,9 +438,6 @@ title="Print to PDF"
     <div class="footer-content row">
         <footer class="col footer"><p>
   
-    By Aneesh Aparajit G<br/>
-  
-      <!-- &copy; Copyright 2022.<br/> -->
 </p>
         </footer>
     </div>
