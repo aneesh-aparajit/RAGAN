@@ -348,26 +348,6 @@ title="Print to PDF"
    Age Modulator
   </a>
  </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#decoder">
-   Decoder
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#discriminator">
-   Discriminator
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#optimization">
-   Optimization
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#experimental-setup">
-   Experimental Setup
-  </a>
- </li>
 </ul>
 
     </nav>
@@ -407,26 +387,6 @@ title="Print to PDF"
    Age Modulator
   </a>
  </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#decoder">
-   Decoder
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#discriminator">
-   Discriminator
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#optimization">
-   Optimization
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#experimental-setup">
-   Experimental Setup
-  </a>
- </li>
 </ul>
 
                         </nav>
@@ -447,25 +407,15 @@ title="Print to PDF"
 <section id="proposed-framework">
 <h2>Proposed Framework<a class="headerlink" href="#proposed-framework" title="Permalink to this headline">#</a></h2>
 <p>The proposed GAN-based frame is divided into the generator consiting of an encoder, a modulator, and a decoder, and the discriminator. Since the discriminator follows exisiting approaches, it was not very broadly elaborated, only the generator part is described in depth. The generator makes use of encoder-decoder architecture for image generator and is made of an identity encoder <span class="math notranslate nohighlight">\(Enc\)</span>, an age modulator <span class="math notranslate nohighlight">\(AM\)</span>, and a decoder <span class="math notranslate nohighlight">\(Dec\)</span>. In a superficial view, the encoder and decoder networks perform the same procedyre as existing works, yet they have a few modifications.</p>
-<p>One of the difference the proposed and the existing works is the indegration of addition sub-network at the bottleneck of the generator. By this networtk, we can obtain features providing information on how a particular person should look like at the age under consideration. Given that such age-ware features are learned based ona given input image, then it can be used for further generatio process.</p>
+<p>One of the difference the proposed and the existing works is the indegration of addition sub-network at the bottleneck of the generator. By this networtk, we can obtain features providing information on how a particular person should look like at the age under consideration. Given that such age-ware features are learned based ona given input image, then it can be used for further generation process.</p>
 </section>
 <section id="identity-encoder">
 <h2>Identity Encoder<a class="headerlink" href="#identity-encoder" title="Permalink to this headline">#</a></h2>
+<p>Given an image <span class="math notranslate nohighlight">\(x\)</span> for age transformation, our identity encoder <span class="math notranslate nohighlight">\(Enc\)</span> extracts identity-related feature <span class="math notranslate nohighlight">\(f_{id}\)</span> of the image, where <span class="math notranslate nohighlight">\(f_{id}=Enc(x)\)</span>. Particularly, the encoder provides such features that supply facial structures at the local level and general information on face shape. These features are necessary to generate the same-looking face and thus have high importance, as discussed eqarlier. In turn, this importance intuitively leads us to focus on the face region only. Therefore, they proposed to perform a masking operation after transferring <span class="math notranslate nohighlight">\(x\)</span> into the feature domain. To this, we utilize a network trained on sophisticated mask-based dataset. We delibrately perform masking at this stage such that we can obtain face as well as background-related features to operate on the face region only while maintaining the background informaion simultaneously. At the architecture level, the idenetity encoder is designed to have an image-to-featur level convolutional layer followed by downsampling blocks.</p>
 </section>
 <section id="age-modulator">
 <h2>Age Modulator<a class="headerlink" href="#age-modulator" title="Permalink to this headline">#</a></h2>
-</section>
-<section id="decoder">
-<h2>Decoder<a class="headerlink" href="#decoder" title="Permalink to this headline">#</a></h2>
-</section>
-<section id="discriminator">
-<h2>Discriminator<a class="headerlink" href="#discriminator" title="Permalink to this headline">#</a></h2>
-</section>
-<section id="optimization">
-<h2>Optimization<a class="headerlink" href="#optimization" title="Permalink to this headline">#</a></h2>
-</section>
-<section id="experimental-setup">
-<h2>Experimental Setup<a class="headerlink" href="#experimental-setup" title="Permalink to this headline">#</a></h2>
+<p>Age modulator <span class="math notranslate nohighlight">\(AM\)</span> is constructed in the form of CNN, which is widely used in learning a low-dimensional vector of an input. It takes identity vectors <span class="math notranslate nohighlight">\(f_{id}\)</span> from the encoder and by, considering given age information <span class="math notranslate nohighlight">\(y'\)</span>, outputs its reshaped version <span class="math notranslate nohighlight">\(f_{aw} = AM(f_{id}, y')\)</span>, where <span class="math notranslate nohighlight">\(f_{aw}\)</span> is an element age-aware vector. To embed target age into AM, we add conditional batch normalization (CBN) layers used as a way to incorporate label information into the network. By doing so, AM learns optimal age-aware features for input identity, which enables satisfying both identity and age properties. Given that the network is integrated into G, it can be trained alongside the generator in an end-to-end manner. We implement AM as a set of downsampling layers with CBN technique producing a compact feature-vector used to modulate decoder layers</p>
 </section>
 </section>
 
