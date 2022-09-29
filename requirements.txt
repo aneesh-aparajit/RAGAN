@@ -1,0 +1,37 @@
+anyio==3.6.1
+certifi==2022.9.24
+charset-normalizer==2.1.1
+click==8.1.3
+coloredlogs @ file:///home/conda/feedstock_root/build_artifacts/coloredlogs_1643220139154/work
+fastapi==0.85.0
+flatbuffers @ file:///home/conda/feedstock_root/build_artifacts/python-flatbuffers_1620718971772/work
+gmpy2 @ file:///Users/runner/miniforge3/conda-bld/gmpy2_1641732969698/work
+h11==0.14.0
+httptools==0.5.0
+humanfriendly @ file:///Users/runner/miniforge3/conda-bld/humanfriendly_1643137263420/work
+idna==3.4
+mpmath @ file:///home/conda/feedstock_root/build_artifacts/mpmath_1612895720168/work
+numpy @ file:///Users/runner/miniforge3/conda-bld/numpy_1662888925855/work
+onnx @ file:///Users/runner/miniforge3/conda-bld/onnx_1664151529610/work
+onnxruntime @ file:///Users/runner/miniforge3/conda-bld/onnxruntime_1660534814239/work/onnxruntime-1.12.1-py3-none-any.whl
+packaging @ file:///home/conda/feedstock_root/build_artifacts/packaging_1637239678211/work
+Pillow==9.2.0
+protobuf==4.21.6
+pydantic==1.10.2
+pyparsing @ file:///home/conda/feedstock_root/build_artifacts/pyparsing_1652235407899/work
+python-dotenv==0.21.0
+PyYAML==6.0
+requests==2.28.1
+six @ file:///home/conda/feedstock_root/build_artifacts/six_1620240208055/work
+sniffio==1.3.0
+starlette==0.20.4
+sympy @ file:///Users/runner/miniforge3/conda-bld/sympy_1664132381385/work
+torch==1.12.1
+torchaudio==0.12.1
+torchvision==0.13.1
+typing_extensions @ file:///home/conda/feedstock_root/build_artifacts/typing_extensions_1656706066251/work
+urllib3==1.26.12
+uvicorn==0.18.3
+uvloop==0.17.0
+watchfiles==0.17.0
+websockets==10.3
