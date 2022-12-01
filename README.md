@@ -64,3 +64,146 @@ Discriminator(
 
 
 ### Generator
+
+- The generator is also inspired from the [Pix2Pix](https://arxiv.org/pdf/1611.07004.pdf), which inspired from the [U-Net: Convolutional Networks for Biomedical
+Image Segmentation](https://arxiv.org/pdf/1505.04597.pdf).
+- I do the exact same thing as what I did to the discriminator. But, there is a small difference. I concatenate both the input and the output age with the input image. Which would result in an image shape of `(BATCH_SIZE, 5, 224, 224)`. 
+- Then I simply pass it through the U-Net architecture.
+
+#### Generator Model used
+
+```python
+Generator(
+  (input_embed): Embedding(3, 65536)
+  (output_embed): Embedding(3, 65536)
+  (init_down): ConvBlock(
+    (conv): Sequential(
+      (0): Conv2d(5, 64, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+      (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): ReLU()
+    )
+  )
+  (down1): ConvBlock(
+    (conv): Sequential(
+      (0): Conv2d(64, 128, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+      (1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): ReLU()
+    )
+  )
+  (down2): ConvBlock(
+    (conv): Sequential(
+      (0): Conv2d(128, 256, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+      (1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): ReLU()
+    )
+  )
+  (down3): ConvBlock(
+    (conv): Sequential(
+      (0): Conv2d(256, 512, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+      (1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): ReLU()
+    )
+  )
+  (down4): ConvBlock(
+    (conv): Sequential(
+      (0): Conv2d(512, 512, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+      (1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): ReLU()
+    )
+  )
+  (down5): ConvBlock(
+    (conv): Sequential(
+      (0): Conv2d(512, 512, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+      (1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): ReLU()
+    )
+  )
+  (down6): ConvBlock(
+    (conv): Sequential(
+      (0): Conv2d(512, 512, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+      (1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): ReLU()
+    )
+  )
+  (bottle_neck): Sequential(
+    (0): Conv2d(512, 512, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1), padding_mode=reflect)
+    (1): LeakyReLU(negative_slope=0.2)
+  )
+  (up1): TransposeConvBlock(
+    (tran_conv): Sequential(
+      (0): ConvTranspose2d(512, 512, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+      (1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): ReLU()
+    )
+  )
+  (up2): TransposeConvBlock(
+    (tran_conv): Sequential(
+      (0): ConvTranspose2d(1024, 512, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+      (1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): ReLU()
+    )
+  )
+  (up3): TransposeConvBlock(
+    (tran_conv): Sequential(
+      (0): ConvTranspose2d(1024, 512, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+      (1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): ReLU()
+    )
+  )
+  (up4): TransposeConvBlock(
+    (tran_conv): Sequential(
+      (0): ConvTranspose2d(1024, 512, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+      (1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): ReLU()
+    )
+  )
+  (up5): TransposeConvBlock(
+    (tran_conv): Sequential(
+      (0): ConvTranspose2d(1024, 256, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+      (1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): ReLU()
+    )
+  )
+  (up6): TransposeConvBlock(
+    (tran_conv): Sequential(
+      (0): ConvTranspose2d(512, 128, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+      (1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): ReLU()
+    )
+  )
+  (up7): TransposeConvBlock(
+    (tran_conv): Sequential(
+      (0): ConvTranspose2d(256, 64, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+      (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): ReLU()
+    )
+  )
+  (final_up): Sequential(
+    (0): ConvTranspose2d(128, 3, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+    (1): Tanh()
+  )
+)
+```
+
+### Losses required to consider
+
+The framework operates on three input information, an input image $x$ and its corresponding age label $y$, and randomly sampled target age $y'$ into which input should be transformed. Subsequently, given this information, G will produce __age-transformed $x'$__, __reconstructed $x_{rec}$__, and __cycle-consistency images $x_{cycle}$__ as 
+
+$$x'=G(x,y')$$
+
+$$x_{rec}=G(x,y)$$
+
+$$x_{cycle}=G(x',y)$$
+
+#### Reconstruction loss
+
+$$\mathcal{L}_{rec}(G) = \|x-x_{rec}\|_1$$
+
+
+#### Cycle-Consistency loss
+
+$$\mathcal{L}_{cyc}(G) = \|x-x_{cycle}\|_1$$
+
+#### Adversarial loss
+
+$$\mathcal{L}_{adv}(G,D)=\mathbb{E}_{x,y}[\log D_y(x)] + \mathbb{E}_{x,y'}[\log(1-D_{y'}(x'))]$$
