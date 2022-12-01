@@ -187,7 +187,7 @@ Generator(
 
 ### Losses required to consider
 
-The framework operates on three input information, an input image $x$ and its corresponding age label $y$, and randomly sampled target age $y'$ into which input should be transformed. Subsequently, given this information, G will produce __age-transformed $x'$__, __reconstructed $x_{rec}$__, and __cycle-consistency images $x_{cycle}$__ as 
+The framework operates on three input information, an input image $x$ and its corresponding age label $y$, and randomly sampled target age $y'$ into which input should be transformed. Subsequently, given this information, G will produce __age-transformed__ $x'$, __reconstructed__ $x_{rec}$, and __cycle-consistency images__ $x_{cycle}$ as 
 
 $$x'=G(x,y')$$
 
@@ -197,13 +197,18 @@ $$x_{cycle}=G(x',y)$$
 
 #### Reconstruction loss
 
+This loss monitors the case where the input and output ages are the same. Ideally, we expect the model to give the same image as the output which is monitored by the L1-Loss.
+
 $$\mathcal{L}_{rec}(G) = \|x-x_{rec}\|_1$$
 
-
 #### Cycle-Consistency loss
+
+We have the age transformed image and let's say that the new input age is the ouptut age and the new output age is the input age. In such a case as well, we would want the output image to be as similar to the input image. This is also determined by the L1-Loss.
 
 $$\mathcal{L}_{cyc}(G) = \|x-x_{cycle}\|_1$$
 
 #### Adversarial loss
+
+In general, GANs follow a Zero Sum Min-Max problem, so we use the standard GAN loss as well.
 
 $$\mathcal{L}_{adv}(G,D)=\mathbb{E}_{x,y}[\log D_y(x)] + \mathbb{E}_{x,y'}[\log(1-D_{y'}(x'))]$$
